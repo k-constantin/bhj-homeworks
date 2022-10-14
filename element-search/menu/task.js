@@ -1,6 +1,6 @@
 const menuLink = document.querySelectorAll('.menu__link');
 
-for (let i = 0; i <= menuLink.length; i++) {
+for (let i = 0; i < menuLink.length; i++) {
     let menu = menuLink[i].closest('.menu__item').querySelector('ul.menu_sub');
     if (menu) {
         menuLink[i].addEventListener ('click', function (event) {
