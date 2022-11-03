@@ -19,8 +19,14 @@ product.forEach(item => {
     addProduct.addEventListener('click', function() {
         const productId = item.dataset.id;
         const productImg = item.querySelector('.product__image').src;
-        bascket.insertAdjacentHTML(
-            'afterbegin',`<div class="cart__product" data-id="${productId}"><img class="cart__product-image" src="${productImg}"><div class="cart__product-count">${quantityVal.textContent}</div></div>`);
+        const cartProductArr = Array.from(document.querySelectorAll('.cart__product'));
+        const productElement = cartProductArr.find(elem => elem.dataset.id == productId);
+        if (productElement) {
+            productElement.querySelector('.cart__product-count').innerText = Number(productElement.querySelector('.cart__product-count').innerText) + Number(quantityVal.innerText); 
+        } else {
+            bascket.insertAdjacentHTML(
+                'afterbegin',`<div class="cart__product" data-id="${productId}"><img class="cart__product-image" src="${productImg}"><div class="cart__product-count">${quantityVal.textContent}</div></div>`);
+        }        
           }
     )
     })
